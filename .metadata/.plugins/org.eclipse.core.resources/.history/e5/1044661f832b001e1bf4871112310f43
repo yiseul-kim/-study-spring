@@ -1,0 +1,20 @@
+package com.mysite.sbb.user;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+public class UserCreateForm {
+	// Client 에서 넘어오는 모든 필드를 한꺼 번에 주입 : 
+	// 필드의 값에 대한 유효성 체크
+	
+	private String username;
+	
+	private String password1;
+	
+	private String password2;
+	
+	private String email;
+	
+}

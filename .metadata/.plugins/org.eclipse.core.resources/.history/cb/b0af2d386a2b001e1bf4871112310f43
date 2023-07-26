@@ -1,0 +1,10 @@
+package com.mysite.sbb.user;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+	// Client ==> Controller ==> Service ==> Repository ==> Entity ==> DB Table
+	
+	private final UserRepository userRepository;
+}

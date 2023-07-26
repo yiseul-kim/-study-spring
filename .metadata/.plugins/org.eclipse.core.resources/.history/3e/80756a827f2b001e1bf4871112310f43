@@ -1,0 +1,21 @@
+package com.mysite.sbb.user;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import lombok.RequiredArgsConstructor;
+
+@Controller
+@RequiredArgsConstructor
+public class UserController {
+	
+	private final UserService userService;
+	
+	//사용자 정보를 입력하는 요청
+	@GetMapping
+	public String signup() {
+		
+		return "signup_form";
+	}
+	
+}

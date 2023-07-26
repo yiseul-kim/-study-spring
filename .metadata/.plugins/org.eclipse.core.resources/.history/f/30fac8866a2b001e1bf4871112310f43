@@ -1,0 +1,14 @@
+package com.mysite.sbb.user;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+	// Client ==> Controller ==> Service ==> Repository ==> Entity ==> DB Table
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	
+}

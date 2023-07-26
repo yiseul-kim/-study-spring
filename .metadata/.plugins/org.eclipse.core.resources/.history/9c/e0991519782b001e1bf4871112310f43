@@ -1,0 +1,25 @@
+package com.mysite.sbb.user;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class UserServiceTest {
+
+	@Autowired
+	private UserService userService;
+	
+	
+	
+	
+	@Test
+	void testCreate() {
+		userService.create("myid", null, null);
+		
+		
+	}
+
+}
