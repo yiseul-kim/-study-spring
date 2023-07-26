@@ -1,0 +1,32 @@
+package com.mysite.sbb.question;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+
+@SpringBootTest
+class QuestionRepositoryTest {
+	
+	@Autowired
+	private QuestionRepository qr;
+
+	@Test
+	public void insert1000Question() {
+		
+		for (int i = 1 ; i < 1000 ; i++ ) {
+			Question q = new Question() ;
+			
+			q.setSubject("제목 - " + i);
+			q.setContent("내용 - " + i);
+			q.setCreateDate(LocalDateTime.now());
+			
+			qr.save(q);
+		}
+	
+	}
+}

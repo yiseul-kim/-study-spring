@@ -1,0 +1,6 @@
+package com.mysite.sbb.answer;
+
+public class AnswerForm {
+	
+	private String content;
+}
