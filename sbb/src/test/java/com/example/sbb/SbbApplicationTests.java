@@ -18,7 +18,7 @@ import com.mysite.sbb.question.QuestionRepository;
 import jakarta.transaction.Transactional;
 
 @SpringBootTest
-class SbbApplicationTests {
+class sbbApplicationTests {
 	
 	//QuestionRepository 객체 주입 : Question Entity( Table ) <== CRUD  
 	@Autowired

@@ -1,0 +1,5 @@
+package com.mysite.sbb.user;
+
+public enum UserRole {
+	//로그인 후의 사용자의 권한을 적용하는 Enum type
+}

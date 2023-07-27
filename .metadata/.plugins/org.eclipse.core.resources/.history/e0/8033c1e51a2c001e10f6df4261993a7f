@@ -1,0 +1,24 @@
+package com.mysite.sbb.user;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired.*;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+public class UserServiceTest2 {
+	
+	@Autowired
+	private UserService userService;
+	
+	@Test
+	void testCreate() {
+		
+		SiteUser siteUser = new SiteUser();
+		
+		userService.create("user12", "user12@aaa.com", "1234");
+		
+		System.out.println("잘 등록 되었습니다. ");
+	}
+
+}

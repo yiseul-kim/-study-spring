@@ -1,0 +1,31 @@
+package com.mysite.sbb.user;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Service
+public class UserSecurityService implements UserDetailsService {
+	// Spring Security 에서 인증을 담당하는 서비스
+	// UserDetailsService interface의 정의된 메소드를 오버라이딩해서 구현
+
+	private final UserRepository userRepository;
+	
+	// 인증을 처리하는 메소드
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// login_form.html에서 username, password 필드가 넘어오는 username을 인풋으로 받음.
+		// 
+		Optional<SiteUser> _siteUser = 
+		
+		
+		return null;
+	}
+
+	
+	
+}

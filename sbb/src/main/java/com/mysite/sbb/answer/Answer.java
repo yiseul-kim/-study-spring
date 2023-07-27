@@ -5,6 +5,7 @@ import java.time.LocalDateTime;		//그 지역에 맞도록 날짜와 시간을 �
 import org.springframework.data.annotation.CreatedDate;
 
 import com.mysite.sbb.question.Question;
+import com.mysite.sbb.user.SiteUser;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,6 +46,10 @@ public class Answer {
 		// question   <======> QUESTION_ID
 	@ManyToOne         //   답변(Answer) : Many   ======>   질문(Question)  : one
 	private Question question; 
+	
+	// Foreign Key : 
+	@ManyToOne
+	private SiteUser author;
 	
 
 }

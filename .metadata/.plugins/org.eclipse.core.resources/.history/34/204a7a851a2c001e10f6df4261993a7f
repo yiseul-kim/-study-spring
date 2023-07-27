@@ -1,5 +1,5 @@
 package com.mysite.sbb.user;
 
-public class UserController {
+public class UserServiceTest2 {
 
 }
