@@ -1,0 +1,51 @@
+<html layout:decorate="~{layout}">
+
+<div layout:fragment="content" class="container">
+	<h5 class="my-3 border-bottom pb-2"> 질문 등록 </h5>
+
+	<!-- question_form.html : 질문글 등록, 수정  2개를 처리 
+		method = "post"  
+			질문글 등록 : /question/create
+			질문글 수정 : /question/create/{변수값}
+			
+			form 태그에서 action을 생략 하면 URL를 사용해서 서버에게 요청을 보냄.
+				CSRF 토큰이 서버에서 주입이 안됨
+		-->
+
+	<form th:object="${questionForm}" method="post">
+		<input type="hidden" name="${_csrf.parameterName}" 
+			th:value="${_csrf.token}">
+
+		<!-- CSRF 토큰을 서버에서 받아와서 전송 -->
+
+		<!-- 외부의 파일을 불러 들임 -->
+		<div th:replace="~{formErrors::formErrorsFragment}"> </div>
+
+		<div class="mb-3">
+			<label for="subject" class="form-label">제목</label>
+
+			<!--
+				<input type="text" name ="subject" id="subject" class="form-control">
+				-->
+			<input type="text" th:field="*{subject}" class="form-control">
+			<!-- th:field="*{subject}" : name, id, value 속성이 한번에 처리되도록 함
+				 	본문을 작성하지 않아 오류가 나더라도 value값까지 정해져서 제목이 지워지지 않음. -->
+		</div>
+
+		<div class="mb-3">
+			<label for="content" class="form-label">내용</label>
+
+			<!--					
+				<textarea name="content" id="content" class="form-control" rows="10"></textarea>
+				-->
+			<textarea th:field="*{content}" class="form-control" rows="10"></textarea>
+
+			<!-- th:field="*{content}" : name="content", id="content", value="content" -->
+
+		</div>
+		<input type="submit" value="저장하기" class="btn btn-primary my-2">
+
+	</form>
+</div>
+
+</html>

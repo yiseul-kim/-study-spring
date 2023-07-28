@@ -64,7 +64,7 @@ public class UserController {
 		
 		//2. userCreateForm : password1, password2 필드의 값이 동일한지 확인
 		if(!userCreateForm.getPassword1().equals(userCreateForm.getPassword2())) {
-			// password1 != password2 일때 
+			// password1 != password2 필드의 값이 같지 않으면 실행 하는 코드  
 			
 			//오류 메세지를 넣어서 클라이언트에게 전송 
 			bindingResult.rejectValue("password2", "passwordInCorrect", "2개의 패스워드가 일치하지 않습니다.");
@@ -80,7 +80,7 @@ public class UserController {
 		
 		} catch (Exception e) {
 			//DB에 username, email이 값이 존재하는 경우 오류 메세지를 강제로 발생 시킴
-			e.printStackTrace();		//로그에 출력, 
+			//e.printStackTrace();		//로그에 출력, 
 			
 			bindingResult.reject("signupFailed", "이미 등록된 사용자나 메일주소 입니다.");
 			//bindingResult.reject("signupFailed", e.getMessage());

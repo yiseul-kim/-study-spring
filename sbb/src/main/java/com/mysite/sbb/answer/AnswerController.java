@@ -2,6 +2,7 @@ package com.mysite.sbb.answer;
 
 import java.security.Principal;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +33,7 @@ public class AnswerController {
 	private final UserService userService;
 	
 	// 답변글을 저장 
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/create/{id}")		// /answer/create/{id}
 	public String createAnswer(Model model , @PathVariable Integer id, 
 		@Valid AnswerForm answerForm, BindingResult bindingResult, 
@@ -40,7 +42,7 @@ public class AnswerController {
 		
 		// Principal : 로그인한 사용자 정보 (사용자 ID)
 		// Principal.getName() : Client 시스템에서 현재 로그인한 정보를 가지고옴.
-		System.out.println("현재 로그인한 사용자 정보 " + principal.getName());
+		//System.out.println("현재 로그인한 사용자 정보 " + principal.getName());
 		
 		
 		
