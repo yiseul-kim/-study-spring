@@ -49,6 +49,8 @@ public class Question {
 	@CreatedDate
 	private LocalDateTime createDate; 
 	
+	private LocalDateTime modifyDate;
+	
 	//실제 테이블에는 적용되지 않음. 
 	//해당 질문에 대한 모든 답변을 불러오는 컬럼. 
 	//Question 객체의 id 필드에 들어오는 값에대한 Answer 테이블의 모든 값을 List 에 담아서 온다. 

@@ -41,6 +41,8 @@ public class Answer {
 	private LocalDateTime createDate;   //2003-07-18 
 		//JPA 에서 필드이름을 : createDate   <=====> CREATE_DATE 
 	
+	private LocalDateTime modifyDate;
+	
 	
 	//Foreign Key ; 
 		// question   <======> QUESTION_ID

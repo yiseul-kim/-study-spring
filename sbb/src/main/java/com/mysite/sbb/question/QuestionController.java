@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.mysite.sbb.answer.AnswerForm;
 import com.mysite.sbb.user.SiteUser;
@@ -172,8 +174,14 @@ public class QuestionController {
 					return "question_form"; 
 				}
 		
-		// id 변수를 사용해서 question 객체 호출 
+		//1. id 변수를 사용해서 question 객체 호출 
 			Question question  = questionService.getQuestion(id); 
+			
+		// 현재 로그온한 게정이 질문작성자가 아닐때 삭제할 권한이 없다고 오류 메세지 발송후
+		if( !question.getAuthor().getUsername().equals(principal.getName())) {
+			// DB에 질문을 등록한 계정과 현재 로그온한 계정이 같지 않을때 예외 강제 발생
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "글 수정 권한이 없습니다. ");
+		}
 			
 		// 글 수정
 			questionService.modify(question, questionForm.getSubject(), questionForm.getContent());

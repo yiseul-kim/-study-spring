@@ -6,6 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,5 +74,73 @@ public class AnswerController {
 		
 		
 	}
+	
+	// 답변글 수정
+	@PreAuthorize("isAuthenticated()") 	//인증된 사용자만 접근, 인증되지 않았을때 인증 폼으로 전송
+	@GetMapping("/modify/{id}")
+	public String answerModify(
+			AnswerForm answerForm, @PathVariable("id") Integer id , 
+			Principal principal  			
+			) {
+		// 넘어오는 id값으로 Answer객체를 반환 
+		Answer answer = 
+				answerService.getAnswer(id);
+		
+		// answerForm DB에서 가져온 값을 저장후 뷰 페이지로 전송
+		answerForm.setContent(answer.getContent());
+		
+		//답급을 수정하는 페이지로 던짐 
+		return "answer_form";
+		
+	}
+	
+	//답글 DB에 수정
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/modify/{id}")
+	public String answerModify(
+			@PathVariable("id") Integer id ,
+			@Valid AnswerForm answerForm, BindingResult bindingResult,
+			Principal principal
+			) {
+		
+		// id를 받아서 Answer 객체를 끄집어 온다. 
+		Answer answer = answerService.getAnswer(id);
+		
+		//answerForm의 content 필드의 값이 넘어오지 않을 경우
+		if(bindingResult.hasErrors()) {
+			
+		 return "answer_form";	
+		}
+		
+		//서비스
+		
+		answerService.modify(answer, answerForm.getContent());
+		
+		return String.format("redirect:/question/detail/%s", answer.getQuestion().getId());
+	}
+	
+	// 답변 삭제 
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/delete/{id}")
+	public String answerDelete(
+			@PathVariable("id") Integer id			
+			) {
+		// id 값으로 Answer 객체를 DB에서 가지고 온다.
+		Answer answer = 
+				answerService.getAnswer(id);
+		
+		// delete 메소드 호출 
+		answerService.delete(answer);
+		
+		return String.format("redirect:/qeustion/detail/%s", answer.getQuestion().getId());
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 
 }
